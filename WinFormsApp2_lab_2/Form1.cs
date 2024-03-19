@@ -5,7 +5,8 @@ namespace WinFormsApp2_lab_2
         public Form1()
         {
             InitializeComponent();
-
+            //Окно посередине
+            this.StartPosition = FormStartPosition.CenterScreen;
             // считывем значения из настроек
             txtBox.Text = Properties.Settings.Default.text_in.ToString();
         }
@@ -16,65 +17,69 @@ namespace WinFormsApp2_lab_2
 
             string text_in = "";
 
-
-
-
             text_in = this.txtBox.Text;
-
-
-
-
-
 
             // выведем сообщение
             MessageBox.Show(Logic.GetResult(text_in), "Результат");
+            returnFocus();
             //  передаем введенные значения в параметры
             Properties.Settings.Default.text_in = text_in;
             Properties.Settings.Default.Save(); // сохраняем переданные значения, чтобы они восстановились пре очередном запуске
         }
 
+        private void returnFocus()
+        {
+            txtBox.Focus(); // Устанавливаем фокус обратно на текстовое поле
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+                this.txtBox.Text = "";
+        }
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                button1_Click(this, e);
-        }
-    }
-    public class Logic
-    {
-        public static string GetResult(string text)
-        {
-            // НАЧАЛО логики
-            string result = "";
-            int amount = 0;
-            String letters = "";
-            text = text.Replace(" ", "");
-            for (int i = 0; i < (text.Length - 1); i++)
             {
-                if (text[i] == text[i + 1] && char.IsLetter(text[i]))
+                //button1_Click(this, e);
+                SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        public class Logic
+        {
+            public static string GetResult(string text)
+            {
+                // НАЧАЛО логики
+                string result = "";
+                int amount = 0;
+                String letters = "";
+                text = text.Replace(" ", "");
+                for (int i = 0; i < (text.Length - 1); i++)
                 {
-                    amount++;
-                    bool is_have = false;
-                    foreach (char c in letters)
+                    if (text[i] == text[i + 1] && char.IsLetter(text[i]))
                     {
-                        if (c == text[i])
+                        amount++;
+                        bool is_have = false;
+                        foreach (char c in letters)
                         {
-                            is_have = true;
+                            if (c == text[i])
+                            {
+                                is_have = true;
+                            }
+                        }
+                        if (!is_have)
+                        {
+                            letters += text[i];
+                            letters += " ";
                         }
                     }
-                    if (!is_have)
-                    {
-                        letters += text[i];
-                        letters += " ";
-                    }
                 }
+                result = "Найдено пар повторяющихся букв: " + amount + ". \nПовторяющиеся буквы: " + letters;
+                // КОНЕЦ логики
+                return result;
             }
-            result = "Найдено пар повторяющихся букв: " + amount + ". \nПовторяющиеся буквы: " + letters;
-            // КОНЕЦ логики
-            return result;
         }
+
+
     }
-
-
-
-
 }
+
+

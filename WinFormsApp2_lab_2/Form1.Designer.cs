@@ -33,6 +33,7 @@
             button1 = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
             label2 = new Label();
+            button2 = new Button();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             // 
             button1.Location = new Point(12, 87);
             button1.Name = "button1";
-            button1.Size = new Size(376, 23);
+            button1.Size = new Size(224, 23);
             button1.TabIndex = 2;
             button1.Text = "Определить повторяющиеся буквы";
             button1.UseVisualStyleBackColor = true;
@@ -80,11 +81,22 @@
             label2.TabIndex = 4;
             label2.Text = "Дано предложение. Определить, сколько в нем одинаковых соседних букв. Пробелы не учитывать.";
             // 
+            // button2
+            // 
+            button2.Location = new Point(242, 87);
+            button2.Name = "button2";
+            button2.Size = new Size(149, 23);
+            button2.TabIndex = 4;
+            button2.Text = "Очистить поле";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(400, 120);
+            Controls.Add(button2);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(button1);
             Controls.Add(label1);
@@ -104,5 +116,6 @@
         private Button button1;
         private FlowLayoutPanel flowLayoutPanel1;
         private Label label2;
+        private Button button2;
     }
 }
