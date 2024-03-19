@@ -19,9 +19,10 @@ namespace WinFormsApp2_lab_2
 
             text_in = this.txtBox.Text;
 
-            // выведем сообщение
             MessageBox.Show(Logic.GetResult(text_in), "Результат");
+            //вернем фокус на текстовое поле
             returnFocus();
+
             //  передаем введенные значения в параметры
             Properties.Settings.Default.text_in = text_in;
             Properties.Settings.Default.Save(); // сохраняем переданные значения, чтобы они восстановились пре очередном запуске
@@ -29,7 +30,8 @@ namespace WinFormsApp2_lab_2
 
         private void returnFocus()
         {
-            txtBox.Focus(); // Устанавливаем фокус обратно на текстовое поле
+            // Устанавливаем фокус обратно на текстовое поле
+            txtBox.Focus(); 
         }
 
         private void button2_Click(object sender, EventArgs e) {
