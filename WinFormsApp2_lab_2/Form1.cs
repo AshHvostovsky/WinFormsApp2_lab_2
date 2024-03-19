@@ -10,10 +10,6 @@ namespace WinFormsApp2_lab_2
             txtBox.Text = Properties.Settings.Default.text_in.ToString();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -22,19 +18,25 @@ namespace WinFormsApp2_lab_2
 
 
 
-            
-                text_in = this.txtBox.Text;
 
-            
-            
-            
-                
-            
+            text_in = this.txtBox.Text;
+
+
+
+
+
+
             // выведем сообщение
-            MessageBox.Show(Logic.GetResult(text_in));
+            MessageBox.Show(Logic.GetResult(text_in), "Результат");
             //  передаем введенные значения в параметры
             Properties.Settings.Default.text_in = text_in;
             Properties.Settings.Default.Save(); // сохраняем переданные значения, чтобы они восстановились пре очередном запуске
+        }
+
+        private void txtBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                button1_Click(this, e);
         }
     }
     public class Logic
