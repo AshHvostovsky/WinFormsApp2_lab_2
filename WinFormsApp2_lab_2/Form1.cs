@@ -19,7 +19,8 @@ namespace WinFormsApp2_lab_2
 
             text_in = this.txtBox.Text;
 
-            MessageBox.Show(Logic.GetResult(text_in), "Результат");
+            if (text_in != "")
+                MessageBox.Show(Logic.GetResult(text_in), "Результат");
             //вернем фокус на текстовое поле
             returnFocus();
 
